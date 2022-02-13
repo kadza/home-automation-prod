@@ -1,13 +1,10 @@
-version: "3.8"
+version: "3.7"
 
 services:
   influxdb:
     image: influxdb:1.8-alpine
     container_name: influxdb
-    ports:
-      - "8083:8083"
-      - "8086:8086"
-      - "8090:8090"
+    network_mode: host
     env_file:
       - .env
     volumes:
@@ -18,8 +15,7 @@ services:
   grafana:
     image: grafana/grafana:8.2.4
     container_name: grafana
-    ports:
-      - "3000:3000"
+    network_mode: host
     depends_on:
       - influxdb
     volumes:
@@ -28,8 +24,7 @@ services:
   node-red-home:
     image: kadzaa/private:latest
     container_name: node-red-home
-    ports:
-      - "1880:1880"
+    network_mode: host
     env_file:
       - .env
     depends_on:
