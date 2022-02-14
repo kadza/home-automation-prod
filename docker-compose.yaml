@@ -22,7 +22,7 @@ services:
       - grafana-storage:/var/lib/grafana
 
   node-red-home:
-    image: kadzaa/private:latest
+    image: kadzaa/private:v1
     container_name: node-red-home
     network_mode: host
     env_file:
