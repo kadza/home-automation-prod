@@ -4,6 +4,7 @@ services:
   influxdb:
     image: influxdb:1.8-alpine
     container_name: influxdb
+    restart: always
     network_mode: host
     env_file:
       - .env
@@ -15,6 +16,7 @@ services:
   grafana:
     image: grafana/grafana:8.2.4
     container_name: grafana
+    restart: always
     network_mode: host
     depends_on:
       - influxdb
@@ -24,6 +26,7 @@ services:
   node-red-home:
     image: kadzaa/private:23-11-22
     container_name: node-red-home
+    restart: always
     network_mode: host
     env_file:
       - .env
@@ -33,6 +36,7 @@ services:
   backup:
     image: offen/docker-volume-backup:latest
     container_name: backup
+    restart: always
     env_file:
       - .env
     volumes:
