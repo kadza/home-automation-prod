@@ -24,7 +24,7 @@ services:
       - grafana-storage:/var/lib/grafana
 
   node-red-home:
-    image: kadzaa/private:23-11-22
+    image: kadzaa/private:12-12-22
     container_name: node-red-home
     restart: always
     network_mode: host
