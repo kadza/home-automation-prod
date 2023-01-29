@@ -1,15 +1,12 @@
-## Quick start
-In order to get started with the home automation project, you need to run the following script on host machine:
-``` bash
-./start.sh
-```
+## Deploy
 
 In order to deploy the project, you need to create context prod and run the remote-deploy script on dev machine:
-``` bash
-docker context create prod --docker "host=ssh://luke@192.168.1.170"
-./remote-deploy.sh
-```
-You can find more details here: https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
 
-## TODO
-* streamline switching between dev and prod
+-   copy ssh-id to remote server: `ssh-copy-id username@host_adress`
+-   create prod context: `docker context create prod --docker "host=ssh://username@host_address"`
+-   run `./remote-deploy.sh`
+
+## Useful links
+
+-   remote deploy: https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
+-   remote deploy troubleshooting: https://forums.docker.com/t/docker-compose-through-ssh-failing-and-referring-to-docker-example-com/115165/10
