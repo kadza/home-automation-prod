@@ -1,9 +1,12 @@
 #!/bin/bash
-# NOTE !!! aws cli must be installed
+# NOTE !!! aws cli must be installed https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 cd "$(dirname "$0")"
 
-set -o allexport; source ../.env; set +o allexport
+set -e
+set -o allexport
+source "../.env"
+set +o allexport
 
 aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
 aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
