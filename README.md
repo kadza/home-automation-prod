@@ -10,3 +10,12 @@ In order to deploy the project, you need to create context prod and run the remo
 
 -   remote deploy: https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
 -   remote deploy troubleshooting: https://forums.docker.com/t/docker-compose-through-ssh-failing-and-referring-to-docker-example-com/115165/10
+
+## Troubleshooting
+
+-   Permission denied (publickey,password)
+
+```
+eval `ssh-agent -s`
+ssh-add
+```
