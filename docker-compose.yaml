@@ -35,9 +35,10 @@ services:
             - grafana-storage:/var/lib/grafana
 
     node-red-home:
-        image: kadzaa/private:24-10-23
+        image: kadzaa/private:10-01-24
         container_name: node-red-home
         restart: always
+        pull_policy: always
         network_mode: host
         env_file:
             - .env
