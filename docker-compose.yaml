@@ -1,61 +1,58 @@
-version: "3.7"
-
 services:
-    home-app:
-        image: kadzaa/home-app:latest
-        container_name: home-app
-        restart: always
-        ports:
-            - 3001:3000
-        restart: always
-        env_file:
-            - .env
-        pull_policy: always
+  home-app:
+    image: kadzaa/home-app:latest
+    container_name: home-app
+    restart: always
+    ports:
+      - 3001:3000
+    env_file:
+      - .env
+    pull_policy: always
 
-    influxdb:
-        image: influxdb:1.8-alpine
-        container_name: influxdb
-        restart: always
-        network_mode: host
-        env_file:
-            - .env
-        volumes:
-            - influxdb-storage:/var/lib/influxdb
-        labels:
-            - docker-volume-backup.stop-during-backup=true
+  influxdb:
+    image: influxdb:1.8-alpine
+    container_name: influxdb
+    restart: always
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    labels:
+      - docker-volume-backup.stop-during-backup=true
 
-    grafana:
-        image: grafana/grafana:8.2.4
-        container_name: grafana
-        restart: always
-        network_mode: host
-        depends_on:
-            - influxdb
-        volumes:
-            - grafana-storage:/var/lib/grafana
+  grafana:
+    image: grafana/grafana:8.2.4
+    container_name: grafana
+    restart: always
+    network_mode: host
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana-storage:/var/lib/grafana
 
-    node-red-home:
-        image: kadzaa/private:10-01-24
-        container_name: node-red-home
-        restart: always
-        pull_policy: always
-        network_mode: host
-        env_file:
-            - .env
-        depends_on:
-            - influxdb
+  node-red-home:
+    image: kadzaa/private:10-01-24
+    container_name: node-red-home
+    restart: always
+    pull_policy: always
+    network_mode: host
+    env_file:
+      - .env
+    depends_on:
+      - influxdb
 
-    backup:
-        image: offen/docker-volume-backup:latest
-        container_name: backup
-        restart: always
-        env_file:
-            - .env
-        volumes:
-            - influxdb-storage:/backup/influxdb-backup:ro
-            - grafana-storage:/backup/grafana-backup:ro
-            - /var/run/docker.sock:/var/run/docker.sock:ro
+  backup:
+    image: offen/docker-volume-backup:latest
+    container_name: backup
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - influxdb-storage:/backup/influxdb-backup:ro
+      - grafana-storage:/backup/grafana-backup:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
-    influxdb-storage:
-    grafana-storage:
+  influxdb-storage:
+  grafana-storage:
