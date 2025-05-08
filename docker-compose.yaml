@@ -22,7 +22,7 @@ services:
       - docker-volume-backup.stop-during-backup=true
 
   grafana:
-    image: grafana/grafana:8.2.4
+    image: grafana/grafana:12.0.0
     container_name: grafana
     restart: always
     network_mode: host
